@@ -5,7 +5,7 @@ public class TabController : MonoBehaviour
 {
     [SerializeField] private Button[] tabs;
     [SerializeField] private GameObject[] pages;
-    private const int SIZE = 4;
+    private const byte SIZE = 4;
 
     void Start()
     {
