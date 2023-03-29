@@ -806,7 +806,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -860,7 +860,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2097519814}
+        m_TargetAssemblyTypeName: InputData, Assembly-CSharp
+        m_MethodName: OnDateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1739,7 +1751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter the time..
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2563,7 +2575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter the data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2596,7 +2608,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 3
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2677,7 +2689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.77000004, y: 0.18400002}
   m_AnchorMax: {x: 0.9541802, y: 0.77626324}
-  m_AnchoredPosition: {x: 0, y: 0.14530945}
+  m_AnchoredPosition: {x: 0, y: 0.1453247}
   m_SizeDelta: {x: 1.9909134, y: 1.9294357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157219950
@@ -3055,7 +3067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter the time...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3088,7 +3100,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 3
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -3690,7 +3702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.040000003, y: 0.1772105}
   m_AnchorMax: {x: 0.22445357, y: 0.78973687}
-  m_AnchoredPosition: {x: -0.5000305, y: 0.2128601}
+  m_AnchoredPosition: {x: -0.5, y: 0.21289062}
   m_SizeDelta: {x: 0.9909134, y: -1.9355469}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589254135
@@ -3824,7 +3836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2931667, y: 0.1772105}
   m_AnchorMax: {x: 0.47500002, y: 0.78973687}
-  m_AnchoredPosition: {x: -0.50001526, y: -0.32086182}
+  m_AnchoredPosition: {x: -0.5000305, y: -0.32086182}
   m_SizeDelta: {x: 2.9909058, y: -0.86800385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690082749
@@ -4726,7 +4738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.53133327, y: 0.18400002}
   m_AnchorMax: {x: 0.717, y: 0.78973687}
-  m_AnchoredPosition: {x: 0.5, y: -0.85469055}
+  m_AnchoredPosition: {x: 0.5, y: -0.8546753}
   m_SizeDelta: {x: 0.9909134, y: -0.07056427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079230353
@@ -4836,6 +4848,7 @@ GameObject:
   - component: {fileID: 2097519810}
   - component: {fileID: 2097519809}
   - component: {fileID: 2097519813}
+  - component: {fileID: 2097519814}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4949,3 +4962,16 @@ MonoBehaviour:
   - {fileID: 957771164}
   - {fileID: 1084025776}
   - {fileID: 769390533}
+--- !u!114 &2097519814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097519808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824e82748d2d515469e8ad97339f0ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputData: {fileID: 0}
