@@ -7,9 +7,9 @@ public class InputData : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dateIndicator;
     [SerializeField] private TextMeshProUGUI fromTimeIndicator;
     [SerializeField] private TextMeshProUGUI beforeTimeIndicator;
-    private DateTime date;
-    private DateTime fromTime;
-    private DateTime beforeTime;
+    public DateTime date;
+    public DateTime fromTime;
+    public DateTime beforeTime;
 
     private void Awake()
     {
