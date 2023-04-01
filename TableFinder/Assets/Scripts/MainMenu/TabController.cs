@@ -5,7 +5,6 @@ public class TabController : MonoBehaviour
 {
     [SerializeField] private Button[] tabs;
     [SerializeField] private GameObject[] pages;
-    [SerializeField] private Button orderingButton;
 
     [SerializeField] private Image[] image;
     [SerializeField] private Color selectedTabColor;
