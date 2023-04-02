@@ -21,6 +21,7 @@ public class PlaceChoose : MonoBehaviour
     void Start()
     {
         inputDataInstance = FindObjectOfType<InputData>();
+
         localDate = inputDataInstance.date;
         localFromTime = inputDataInstance.fromTime;
         localBeforeTime = inputDataInstance.beforeTime;
