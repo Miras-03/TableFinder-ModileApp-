@@ -24,6 +24,8 @@ public class InputData : MonoBehaviour
     private bool checkFromTime = false;
     private bool checkBeforeTime = false;
 
+    private bool checkBeforeTimeOut = false;
+
     private void Awake()
     {
         date = DateTime.Now;
@@ -69,34 +71,40 @@ public class InputData : MonoBehaviour
         {
             fromTime = newFromTime;
 
-            if (fromTime >= DateTime.Now)
+            if (date == DateTime.Today)
+            {
+                if (fromTime >= DateTime.Now.AddMinutes(29))
+                {
+                    fromTimeIndicator.text = "Successfully!";
+                    fromTimeIndicator.color = Color.green;
+                    hint.enabled = false;
+                    checkFromTime = true;
+                }
+
+                else
+                {
+                    fromTimeIndicator.text = "Error!";
+                    fromTimeIndicator.color = Color.red;
+                    hint.enabled = true;
+                    hint.text = "It isn't possible to order a table less than 30 minutes";
+                    checkFromTime = false;
+                }
+            }
+            
+            else if(date > DateTime.Today)
             {
                 fromTimeIndicator.text = "Successfully!";
                 fromTimeIndicator.color = Color.green;
-                hint.enabled = false;
                 checkFromTime = true;
-
-                // Check if the beforeTime is greater than fromTime
-                if (beforeTime > fromTime)
-                {
-                    beforeTimeIndicator.text = "Successfully!";
-                    beforeTimeIndicator.color = Color.green;
-                }
-                else
-                {
-                    beforeTimeIndicator.text = "Error";
-                    hint.text = "Before time must be greater than from time";
-                    beforeTimeIndicator.color = Color.red;
-                    checkBeforeTime = false;
-                }
             }
+
             else
             {
                 fromTimeIndicator.text = "Error!";
                 fromTimeIndicator.color = Color.red;
                 hint.enabled = true;
-                hint.text = "You made a mistake with the timing!";
-                checkFromTime = false;
+                hint.text = "You made a mistake with the date!";
+                checkDate = false;
             }
         }
     }
@@ -107,18 +115,19 @@ public class InputData : MonoBehaviour
         {
             beforeTime = newBefore;
 
-            if (beforeTime > fromTime)
+            if (beforeTime > fromTime.AddMinutes(14))
             {
                 beforeTimeIndicator.text = "Successfully!";
                 beforeTimeIndicator.color = Color.green;
                 checkBeforeTime = true;
                 hint.enabled = false;
             }
+
             else
             {
                 beforeTimeIndicator.text = "Error";
                 hint.enabled = true;
-                hint.text = "Before time must be greater than from time";
+                hint.text = "We can't order a table less than 15 minutes";
                 beforeTimeIndicator.color = Color.red;
                 checkBeforeTime = false;
             }
