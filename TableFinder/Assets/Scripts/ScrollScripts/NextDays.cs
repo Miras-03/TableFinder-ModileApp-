@@ -7,44 +7,81 @@ public class NextDays : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI[] displayText;
     [SerializeField] private Button[] dayButtons;
-    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private GameObject[] buttonBelong;
+    [SerializeField] private GameObject[] contentDays;
+    [SerializeField] private GameObject[] tablePanels;
 
     private DateTime currentDateTime;
+    private DateTime choosenDate;
 
     private byte sizeOfWeek = 7;
+    private byte index;
+
+    private bool flagOfTable = false;
 
     private void Start()
     {
-        SetCurrentDateTime();
+        currentDateTime = DateTime.Today;
     }
 
-    public void SetCurrentDateTime()
+    public void SetCurrentDateTime(string inputText)
     {
-        DateTime.TryParse(inputField.text, out currentDateTime);
+        if (DateTime.TryParse(inputText, out DateTime newText))
+        {
+            choosenDate = newText;
+            DateTime buttonDateTime = currentDateTime;
 
-        if (currentDateTime == DateTime.MinValue)
-            currentDateTime = DateTime.Today;
+            for (byte i = 0; i < sizeOfWeek; i++)
+            {
+                dayButtons[i].interactable = true;
+                string buttonDateString = buttonDateTime.ToString("MMMM dd");
 
-        DateTime buttonDateTime = currentDateTime;
+                if (buttonDateString == choosenDate.ToString("MMMM dd"))
+                {
+                    contentDays[i].SetActive(true);
+                    dayButtons[i].interactable = false;
+                    dayButtons[i].Select();
+                }
+                buttonDateTime = currentDateTime.AddDays(i + 1);
+            }
 
-        for (int i = 0; i < sizeOfWeek; i++)
+            for (byte i = 0; i < sizeOfWeek; i++)
+            {
+                DateTime nextDay = currentDateTime.AddDays(i);
+                string nextDays = nextDay.ToString("dddd, MMMM dd");
+                displayText[i].text = nextDays;
+            }
+        }
+    }
+
+    public void OnPlaceTabSelected(int theIndex)
+    {
+        for (byte i = 0; i < sizeOfWeek; i++)
         {
             dayButtons[i].interactable = true;
-
-            if (buttonDateTime.ToString("dddd, MMMM dd") == inputField.text)
-                dayButtons[i].interactable = false;
-
-            buttonDateTime = currentDateTime.AddDays(i);
+            contentDays[i].SetActive(false);
         }
 
-        /*int selectedIndex = (int)(currentDateTime - currentDateTime.Date).TotalDays;
-        dayButtons[selectedIndex].Select();*/
+        dayButtons[theIndex].interactable = false;
+        contentDays[theIndex].SetActive(true);
+    }
 
-        for (int i = 0; i < sizeOfWeek; i++)
+    public void BackButton()
+    {
+        if (flagOfTable)
         {
-            DateTime nextDay = currentDateTime.AddDays(i);
-            string nextDays = nextDay.ToString("dddd, MMMM dd");
-            displayText[i].text = nextDays;
+            tablePanels[index].SetActive(false);
+            flagOfTable = false;
         }
+        else
+        {
+            foreach (GameObject item in buttonBelong)
+                item.SetActive(false);
+        }
+    }
+    public void SetIndexForButton(int index)
+    {
+        this.index = (byte)index;
+        flagOfTable = true;
     }
 }

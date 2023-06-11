@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using static RealTime;
 
-public class InputData : MonoBehaviour
+public class InputData : MonoBehaviour, ITimeObserver
 {
     [SerializeField] private TextMeshProUGUI dateIndicator;
     [SerializeField] private TextMeshProUGUI fromTimeIndicator;
@@ -16,6 +17,9 @@ public class InputData : MonoBehaviour
 
     [SerializeField] private Button orderButton;
 
+    private DateTime inputDate;
+    public DateTime inputFromTime;
+
     public DateTime date;
     public DateTime fromTime;
     public DateTime beforeTime;
@@ -24,13 +28,10 @@ public class InputData : MonoBehaviour
     private bool checkFromTime = false;
     private bool checkBeforeTime = false;
 
-    private bool checkBeforeTimeOut = false;
-
     private void Awake()
     {
-        date = DateTime.Now;
-        fromTime = DateTime.Now;
-        beforeTime = DateTime.Now;
+        RealTime realTime = FindObjectOfType<RealTime>();
+        realTime.SubscribeObserver(this);
     }
 
     private void Update()
@@ -45,9 +46,8 @@ public class InputData : MonoBehaviour
     {
         if (DateTime.TryParse(dateString, out DateTime newDate))
         {
-            date = newDate;
-
-            if (date >= DateTime.Today)
+            inputDate = newDate;
+            if (date <= inputDate)
             {
                 dateIndicator.text = "Successfully!";
                 hint.enabled = false;
@@ -69,11 +69,10 @@ public class InputData : MonoBehaviour
     {
         if (DateTime.TryParse(timeString, out DateTime newFromTime))
         {
-            fromTime = newFromTime;
-
-            if (date == DateTime.Today)
+            inputFromTime = newFromTime;
+            if (date == inputDate)
             {
-                if (fromTime >= DateTime.Now.AddMinutes(29))
+                if (fromTime.AddMinutes(29) <= inputFromTime)
                 {
                     fromTimeIndicator.text = "Successfully!";
                     fromTimeIndicator.color = Color.green;
@@ -91,7 +90,7 @@ public class InputData : MonoBehaviour
                 }
             }
             
-            else if(date > DateTime.Today)
+            else if(date > inputDate)
             {
                 fromTimeIndicator.text = "Successfully!";
                 fromTimeIndicator.color = Color.green;
@@ -114,8 +113,7 @@ public class InputData : MonoBehaviour
         if (DateTime.TryParse(timeString, out DateTime newBefore))
         {
             beforeTime = newBefore;
-
-            if (beforeTime > fromTime.AddMinutes(14))
+            if (beforeTime > inputFromTime.AddMinutes(14))
             {
                 beforeTimeIndicator.text = "Successfully!";
                 beforeTimeIndicator.color = Color.green;
@@ -132,5 +130,11 @@ public class InputData : MonoBehaviour
                 checkBeforeTime = false;
             }
         }
+    }
+
+    public void OnTimeUpdated(DateTime newTime)
+    {
+        date = newTime.Date;
+        fromTime = newTime;
     }
 }
